@@ -1,3 +1,4 @@
+import { StudentAttendanceCard } from "./StudentAttendanceCard";
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
@@ -102,7 +103,7 @@ export function StudentDashboard({ onFeatureSelect }: StudentDashboardProps) {
               </p>
             </div>
           </div>
-          
+
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
@@ -122,13 +123,12 @@ export function StudentDashboard({ onFeatureSelect }: StudentDashboardProps) {
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{stat.icon}</span>
                   <div>
-                    <div className={`text-2xl font-bold ${
-                      stat.color === 'amber' ? 'text-amber-600' :
-                      stat.color === 'blue' ? 'text-blue-600' :
-                      stat.color === 'orange' ? 'text-orange-600' :
-                      stat.color === 'purple' ? 'text-purple-600' :
-                      'text-blue-600'
-                    }`}>
+                    <div className={`text-2xl font-bold ${stat.color === 'amber' ? 'text-amber-600' :
+                        stat.color === 'blue' ? 'text-blue-600' :
+                          stat.color === 'orange' ? 'text-orange-600' :
+                            stat.color === 'purple' ? 'text-purple-600' :
+                              'text-blue-600'
+                      }`}>
                       {stat.value}
                     </div>
                     <div className="text-sm text-foreground/70">
@@ -151,12 +151,14 @@ export function StudentDashboard({ onFeatureSelect }: StudentDashboardProps) {
               <span className="font-semibold">Level {currentLevel} Progress</span>
               <span className="text-sm text-foreground/70">{xpForNextLevel} XP to Level {currentLevel + 1}</span>
             </div>
-            <Progress 
-              value={((totalXP % 500) / 500) * 100} 
+            <Progress
+              value={((totalXP % 500) / 500) * 100}
               className="h-3 bg-gray-200 dark:bg-gray-700"
             />
           </motion.div>
         </motion.div>
+        {/* ✅ Mark Attendance Card */}
+        <StudentAttendanceCard studentId="1" classId="Advanced_Mathematics" />
 
         {/* Feature Cards Grid - 2 per row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -166,8 +168,8 @@ export function StudentDashboard({ onFeatureSelect }: StudentDashboardProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ 
-                scale: 1.02, 
+              whileHover={{
+                scale: 1.02,
                 y: -8,
                 transition: { type: "spring", stiffness: 300, damping: 20 }
               }}
@@ -178,14 +180,13 @@ export function StudentDashboard({ onFeatureSelect }: StudentDashboardProps) {
             >
               <Card className="h-full bg-white/70 dark:bg-black/70 backdrop-blur-lg border border-white/30 dark:border-white/10 shadow-2xl overflow-hidden relative">
                 {/* Animated background gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${
-                  hoveredCard === feature.id ? feature.hoverGradient : feature.gradient
-                } opacity-3 group-hover:opacity-5 transition-opacity duration-500`} />
-                
+                <div className={`absolute inset-0 bg-gradient-to-br ${hoveredCard === feature.id ? feature.hoverGradient : feature.gradient
+                  } opacity-3 group-hover:opacity-5 transition-opacity duration-500`} />
+
                 {/* Floating elements */}
                 <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-40 transition-opacity">
                   <motion.div
-                    animate={{ 
+                    animate={{
                       rotate: hoveredCard === feature.id ? 360 : 0,
                       scale: hoveredCard === feature.id ? 1.2 : 1
                     }}
@@ -209,8 +210,8 @@ export function StudentDashboard({ onFeatureSelect }: StudentDashboardProps) {
                         <CardTitle className="text-xl mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-emerald-600 group-hover:to-teal-600 group-hover:bg-clip-text transition-all">
                           {feature.title}
                         </CardTitle>
-                        <Badge 
-                          variant="secondary" 
+                        <Badge
+                          variant="secondary"
                           className={`bg-gradient-to-r ${feature.gradient} text-white border-0`}
                         >
                           Available
@@ -263,7 +264,7 @@ export function StudentDashboard({ onFeatureSelect }: StudentDashboardProps) {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Button 
+                    <Button
                       className={`w-full bg-gradient-to-r ${feature.gradient} hover:${feature.hoverGradient} text-white border-0 rounded-xl py-3 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105`}
                     >
                       <span className="mr-2">{feature.icon}</span>
@@ -311,7 +312,7 @@ export function StudentDashboard({ onFeatureSelect }: StudentDashboardProps) {
               +50 XP
             </Badge>
           </div>
-          
+
           <div className="flex items-center justify-between">
             <div>
               <h4 className="font-semibold mb-1">Complete 3 Math Problems</h4>
